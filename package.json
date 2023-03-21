@@ -1,0 +1,25 @@
+{
+  "name": "shave-xp-cypress",
+  "version": "1.0.0",
+  "description": "Projeto de testes de ponta a ponta para o Shave eXperience",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cypress",
+    "cypress",
+    "xp",
+    "shave",
+    "xp",
+    "shave",
+    "qax",
+    "cypress",
+    "experience"
+  ],
+  "author": "Pedro Ciccone",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^12.7.0"
+  }
+}
