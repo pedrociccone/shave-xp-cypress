@@ -1,11 +1,11 @@
 
 
 class SignupPage {
-    
+
     constructor() {
         this.alertError = '.alert-error'
     }
-    
+
     submit(name = null, email = null, password = null) {
         cy.visit('/signup')
 
@@ -30,10 +30,18 @@ class SignupPage {
     }
 
     noticeShouldBe(message) {
+
         cy.get('.notice-container')
             .should('be.visible')
-            .find('.error p')
-            .should('have.text', message)
+
+        if (cy.get('.notice')) {
+            cy.get('.notice')
+                .should('have.text', message)
+        } else {
+            cy.find('.error p')
+                .should('have.text', message)
+        }
+
     }
 
     alertShouldBe(message) {

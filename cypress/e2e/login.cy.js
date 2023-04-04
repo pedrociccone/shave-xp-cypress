@@ -7,7 +7,7 @@ import data from '../fixtures/users-login.json'
 describe('Login', () => {
 
     context('Quando submeto o formulário', () => {
-        it.only('Deve logar com sucesso', () => {
+        it('Deve logar com sucesso', () => {
             // Given I have a NEW registered user
             const user = data.success
             cy.createUser(user)
