@@ -63,3 +63,10 @@ Cypress.Commands.add('getToken', (email) => {
         Cypress.env('passToken', result.body.token)
     })
 })
+
+Cypress.Commands.add('deleteUser', (email) => {
+    cy.task('removeUser', email)
+    .then(function (result) {
+        cy.log((result))
+    })
+})
