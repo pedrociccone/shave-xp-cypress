@@ -1,17 +1,15 @@
 {
     "success": {
+        "name": "Paulo Silva Dos Santos",
+        "email": "paulosilva@gmail.com",
+        "password": "qax123",
+        "is_shaver": false
+    },
+    "existinguser": {
         "name": "Pedro Ciccone",
         "email": "pedrocicc14@gmail.com",
         "password": "qax123",
         "is_shaver": false
-    },
-    "invpass": {
-        "email": "pedrocicc14@gmail.com",
-        "password": "abc123"
-    },
-    "email404": {
-        "email": "pedrocicc14@404.com",
-        "password": "qax123"
     },
     "shortpass": [
         "1",
@@ -21,11 +19,11 @@
         "12345"
     ],
     "invemails": [
-        "pedro&gmail.com",
-        "pedro.com.br",
+        "paulo&gmail.com",
+        "paulo.com.br",
         "@gmail.com",
         "@",
-        "pedro@",
+        "paulo@",
         "12313432",
         "#@$$!#@",
         "xpars3213"
