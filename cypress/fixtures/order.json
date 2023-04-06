@@ -1,0 +1,15 @@
+{
+    "customer": {
+        "name": "Brandon Cortés",
+        "email": "brandoncortes@gmail.com",
+        "password": "qax123",
+        "is_shaver": false
+    },
+    "shaver": {
+        "name": "Nick Campbell"
+    },
+    "service": {
+        "description": "Tintura capilar",
+        "price": "99,99"
+    }
+}
