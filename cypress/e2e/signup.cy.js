@@ -1,5 +1,3 @@
-import signupPage from '../support/pages/views/signup'
-
 import data from '../fixtures/users-signup.json'
 
 describe('Cadastro de novo usuário', () => {
@@ -9,32 +7,40 @@ describe('Cadastro de novo usuário', () => {
 
             cy.deleteUser(user)
 
-            signupPage.submit(user.name, user.email, user.password)
+            cy.signup(user.name, user.email, user.password)
 
             const message = 'Boas vindas, faça login para solicitar serviços!'
-            signupPage.shared.noticeSuccessShouldBe(message)
+            cy.noticeSuccessShouldBe(message)
         })
 
         it('Não deve cadastrar com email já cadastrado', () => {
             const user = data.existinguser
 
-            signupPage.submit(user.name, user.email, user.password)
+            cy.signup(user.name, user.email, user.password)
 
             const message = 'Oops! E-mail já cadastrado.'
-            signupPage.shared.noticeErrorShouldBe(message)
+            cy.noticeErrorShouldBe(message)
         })
 
         it('Campos obrigatórios', () => {
-            signupPage.submit()
-            signupPage.requiredFields('Nome é obrigatório', 'E-mail é obrigatório', 'Senha é obrigatória')
+            cy.signup()
+
+            cy.get('.alert-error')
+                .should('have.length', 3)
+                // The '$' indicates that you are looking for an HTML element
+                .and(($small) => {
+                    expect($small.get(0).textContent).to.equal('Nome é obrigatório')
+                    expect($small.get(1).textContent).to.equal('E-mail é obrigatório')
+                    expect($small.get(2).textContent).to.equal('Senha é obrigatória')
+                })
         })
     })
 
     context('Senha muito curta', () => {
         data.shortpass.forEach((p) => {
             it(`Não deve cadastrar com a senha: ${p}`, () => {
-                signupPage.submit('Paulo Silva Dos Santos', 'paulosilva@gmail.com', p)
-                signupPage.shared.alertShouldBe('Pelo menos 6 caracteres')
+                cy.signup('Paulo Silva Dos Santos', 'paulosilva@gmail.com', p)
+                cy.alertShouldBe('Pelo menos 6 caracteres')
             })
         })
     })
@@ -42,8 +48,8 @@ describe('Cadastro de novo usuário', () => {
     context('Email no formato incorreto', () => {
         data.invemails.forEach((e) => {
             it(`Não deve cadastrar com o e-mail: ${e}`, () => {
-                signupPage.submit('Paulo Silva Dos Santos', e, 'qax123')
-                signupPage.shared.alertShouldBe('Informe um email válido')
+                cy.signup('Paulo Silva Dos Santos', e, 'qax123')
+                cy.alertShouldBe('Informe um email válido')
             })
         })
     })
