@@ -1,9 +1,9 @@
-
+import shared from '../../shared'
 
 class SignupPage {
 
     constructor() {
-        this.alertError = '.alert-error'
+        this.shared = shared
     }
 
     submit(name = null, email = null, password = null) {
@@ -29,29 +29,8 @@ class SignupPage {
             .click()
     }
 
-    noticeShouldBe(message) {
-
-        cy.get('.notice-container')
-            .should('be.visible')
-
-        if (cy.get('.notice')) {
-            cy.get('.notice')
-                .should('have.text', message)
-        } else {
-            cy.find('.error p')
-                .should('have.text', message)
-        }
-
-    }
-
-    alertShouldBe(message) {
-        cy.get(this.alertError)
-            .should('be.visible')
-            .should('have.text', message)
-    }
-
     requiredFields(nameMessage, emailMessage, passwordMessage) {
-        cy.get(this.alertError)
+        cy.get('.alert-error')
             .should('have.length', 3)
             // The '$' indicates that you are looking for an HTML element
             .and(($small) => {

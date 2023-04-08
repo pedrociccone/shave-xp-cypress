@@ -1,4 +1,3 @@
-
 import header from '../../components/header'
 
 class ShaversPage {

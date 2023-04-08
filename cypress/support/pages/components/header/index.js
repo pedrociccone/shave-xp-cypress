@@ -1,4 +1,3 @@
-
 class Header {
 
     userShouldBeLoggedIn(name) {

@@ -1,4 +1,3 @@
-
 class CatalogPage {
 
     selectService(name) {

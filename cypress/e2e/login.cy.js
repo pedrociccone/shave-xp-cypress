@@ -1,6 +1,5 @@
-
-import loginPage from '../support/pages/login'
-import shaversPage from '../support/pages/shavers'
+import loginPage from '../support/pages/views/login'
+import shaversPage from '../support/pages/views/shavers'
 
 import data from '../fixtures/users-login.json'
 
@@ -25,7 +24,7 @@ describe('Login', () => {
             loginPage.submit(user.email, user.password)
 
             const message = 'Ocorreu um erro ao fazer login, verifique suas credenciais.'
-            loginPage.noticeShouldBe(message)
+            loginPage.shared.noticeErrorShouldBe(message)
         })
 
         it('Não deve logar com email não cadastrado', () => {
@@ -34,7 +33,7 @@ describe('Login', () => {
             loginPage.submit(user.email, user.password)
 
             const message = 'Ocorreu um erro ao fazer login, verifique suas credenciais.'
-            loginPage.noticeShouldBe(message)
+            loginPage.shared.noticeErrorShouldBe(message)
         })
 
         it('Campos obrigatórios', () => {
@@ -48,7 +47,7 @@ describe('Login', () => {
         data.shortpass.forEach((p) => {
             it(`Não deve logar com a senha: ${p}`, () => {
                 loginPage.submit('pedrocicc14@gmail.com', p)
-                loginPage.alertShouldBe('Pelo menos 6 caracteres')
+                loginPage.shared.alertShouldBe('Pelo menos 6 caracteres')
             })
         })
     })
@@ -57,7 +56,7 @@ describe('Login', () => {
         data.invemails.forEach((e) => {
             it(`Não deve logar com o e-mail: ${e}`, () => {
                 loginPage.submit(e, 'qax123')
-                loginPage.alertShouldBe('Informe um email válido')
+                loginPage.shared.alertShouldBe('Informe um email válido')
             })
         })
     })
