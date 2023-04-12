@@ -1,7 +1,7 @@
 Cypress.Commands.add('createUser', (user) => {
     cy.request({
         method: 'POST',
-        url: 'http://localhost:5000/user',
+        url: Cypress.env('apiHelper') + '/user',
         body: user
     }).then(function (response) {
         expect(response.status).to.eq(201)
@@ -11,7 +11,7 @@ Cypress.Commands.add('createUser', (user) => {
 Cypress.Commands.add('deleteUser', (user) => {
     cy.request({
         method: 'DELETE',
-        url: 'http://localhost:5000/user/' + user.email,
+        url: Cypress.env('apiHelper') + '/user' + user.email,
     }).then(function (response) {
         expect(response.status).to.eq(204)
     })
@@ -20,7 +20,7 @@ Cypress.Commands.add('deleteUser', (user) => {
 Cypress.Commands.add('recoverPass', (email) => {
     cy.request({
         method: 'POST',
-        url: 'http://localhost:3333/password/forgot',
+        url: Cypress.env('apiUrl') + '/password/forgot',
         body: { email: email }
     }).then(result => {
         expect(result.status).to.eql(204)
@@ -30,7 +30,7 @@ Cypress.Commands.add('recoverPass', (email) => {
 Cypress.Commands.add('getToken', (email) => {
     cy.request({
         method: 'GET',
-        url: 'http://localhost:5000/token/' + email
+        url: Cypress.env('apiHelper') + '/token/' + email
     }).then(result => {
         expect(result.status).to.eql(200)
         cy.log(result.body.token)
@@ -43,7 +43,7 @@ Cypress.Commands.add('getToken', (email) => {
 Cypress.Commands.add('apiLogin', (user) => {
     cy.request({
         method: 'POST',
-        url: 'http://localhost:3333/sessions',
+        url: Cypress.env('apiUrl') + '/sessions',
         body: {
             email: user.email,
             password: user.password
