@@ -11,7 +11,7 @@ Cypress.Commands.add('createUser', (user) => {
 Cypress.Commands.add('deleteUser', (user) => {
     cy.request({
         method: 'DELETE',
-        url: Cypress.env('apiHelper') + '/user' + user.email,
+        url: Cypress.env('apiHelper') + '/user/' + user.email,
     }).then(function (response) {
         expect(response.status).to.eq(204)
     })
